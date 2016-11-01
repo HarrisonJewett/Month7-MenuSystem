@@ -74,6 +74,21 @@ public:
 		}
 	}
 
+	//void deleteHead()
+	//{
+	//	if (Size == 1)
+	//	{
+	//		delete head;
+	//	}
+	//	else if (Size > 1)
+	//	{
+	//		temp = new Node;
+	//		temp->data = head->data;
+	//		delete head;
+	//		head = temp;
+	//	}
+	//}
+
 	//Clear the list, freeing of any dynamic memory
 	void clear()
 	{

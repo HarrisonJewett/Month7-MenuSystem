@@ -1,39 +1,15 @@
-#include <iostream>
-#include <ctime>
-#include <string>
-#include <conio.h>
-#include "DynArray.h"
-#include "SLList.h"
-#include <fstream>
+#include "stdIncludes.h"
+#include "doSomething.h"
 
-
-using namespace std;
-
-//Functions
-void loadMenu(string file);
-
-//Ending Functions
-
-struct menuItem
-{
-	string name;
-	bool is_subMenu;
-	string subMenuPath;
-};
+doSomething play;
 
 class DTSTimer
 {
 	unsigned int startTime;
 public:
-	DTSTimer()
-	{
-		reset();
-	}
+	DTSTimer() { reset(); }
 
-	void reset()
-	{
-		startTime = clock();
-	}
+	void reset() { startTime = clock(); }
 
 	unsigned int getElapsedTime()
 	{
@@ -48,29 +24,11 @@ public:
 
 };
 
-class menu
-{
-	string title;
-	DynArray<menuItem> choices;
-	unsigned int currSelection;
-
-
-public:
-	menu();
-	~menu();
-};
-
-class menuManager
-{
-	SLList<menu> activeMenus;
-};
-
 int main(int argc, char ** argv)
 {
 	DTSTimer bob;
 	string userInput;
-
-	while(bob.getElapsedTime() < 15000)
+	/*while(bob.getElapsedTime() < 15000)
 	{
 
 		//1 - get user input
@@ -95,35 +53,10 @@ int main(int argc, char ** argv)
 		system("cls");
 		cout << 15 - bob.getElapsedTime()/1000;
 		cout << '\n' << userInput << '\n';
-	}
+	}*/
 
-	loadMenu("main.mnu");
+	play.start();
 
-	system("pause");
+	//system("pause");
 	return 0;
-}
-
-void loadMenu(string file)
-{
-	ifstream loading;
-
-	loading.open(file);
-
-	if (loading.is_open())
-	{
-		int numLines = 0;
-		while (true)
-		{
-			string readLine;
-
-			getline(loading, readLine);
-
-			cout << readLine << '\n';
-
-			if (loading.eof())
-				break;
-			numLines++;
-		}
-		loading.close();
-	}
 }

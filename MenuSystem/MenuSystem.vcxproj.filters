@@ -18,12 +18,36 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="doSomething.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdIncludes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="menuManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DynArray.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SLList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="doSomething.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdIncludes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="menuManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
