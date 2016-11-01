@@ -56,9 +56,8 @@ void doSomething::Update()
 	{
 		if (newSubMenu.choices.size() > 1)
 		{
-			//menuStack.activeMenus.deleteHead();
-			//menuStack.activeMenus.remove(menuStack.thisisathing());
-			//loadMenu(menuStack.activeMenus);
+			menuStack.removeHead();
+			//loadMenu(menuStack.current());
 		}
 		else
 		{
