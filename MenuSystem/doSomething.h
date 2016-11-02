@@ -22,6 +22,4 @@ public:
 	void Render();
 
 	void loadMenu(string file);
-
-
 };

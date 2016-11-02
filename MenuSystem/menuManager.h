@@ -19,10 +19,10 @@ public:
 		activeMenus.remove(iter);
 	}
 
-	void current()
+	menuItem current()
 	{
 		SLLIter<menuItem> iter(activeMenus);
 		iter.begin();
-		iter.current();
+		return iter.current();
 	}
 };

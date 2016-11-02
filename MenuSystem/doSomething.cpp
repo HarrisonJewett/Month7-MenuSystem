@@ -28,7 +28,7 @@ void doSomething::Update()
 		SetConsoleCursorPosition(output, position);
 		cout << ' ';
 		if (curSelection == 0)
-			curSelection = maxSelection;
+			curSelection = maxSelection + 1;
 		else
 			curSelection--;
 	}
@@ -38,26 +38,37 @@ void doSomething::Update()
 		COORD position = { 0, (int)(CURSOR_ADD + curSelection) };
 		SetConsoleCursorPosition(output, position);
 		cout << ' ';
-		if (curSelection == maxSelection)
+		if (curSelection == maxSelection + 1)
 			curSelection = 0;
 		else
 			curSelection++;
 	}
 	if (GetAsyncKeyState(VK_RETURN))
 	{
-		if (curSelection <= numPossibleMenus)
+		if (curSelection == maxSelection + 1)
+		{
+			run = false;
+			return;
+		}
+		else if (curSelection < numPossibleMenus)
 		{
 			system("cls");
-			loadMenu(newSubMenu.choices[curSelection].subMenuPath);
 			menuStack.activeMenus.addHead(newSubMenu.choices[curSelection]);
+			loadMenu(menuStack.current().subMenuPath);
 		}
 	}
 	if (GetAsyncKeyState(VK_ESCAPE))
 	{
-		if (newSubMenu.choices.size() > 1)
+		system("cls");
+		if (menuStack.activeMenus.size() > 1)
 		{
 			menuStack.removeHead();
-			//loadMenu(menuStack.current());
+			loadMenu(menuStack.current().subMenuPath);
+		}
+		else if (menuStack.activeMenus.size() == 1)
+		{			
+			menuStack.removeHead();
+			loadMenu("main.mnu");
 		}
 		else
 		{
@@ -85,11 +96,16 @@ void doSomething::loadMenu(string file)
 
 	if (loading.is_open())
 	{
+		newSubMenu.choices.clear();
+
 		string name;
 		string readLine;
 		string subMenu;
 		string size;
 		int i = 0;
+		maxSelection = 1;
+		numPossibleMenus = 0;
+
 
 		getline(loading, name);
 		cout << name << '\n';
@@ -119,12 +135,12 @@ void doSomething::loadMenu(string file)
 			}
 			
 			cout << "  " << readLine << '\n';
-			
 
 			if (loading.eof())
 				break;
 			i++;
 		}
+		cout << "  Exit";
 		loading.close();
 	}
 }

@@ -26,37 +26,6 @@ public:
 
 int main(int argc, char ** argv)
 {
-	DTSTimer bob;
-	string userInput;
-	/*while(bob.getElapsedTime() < 15000)
-	{
-
-		//1 - get user input
-		if(_kbhit())
-		{
-			char ch = _getch();
-
-			if(-32 == ch)
-				_getch();
-
-			// did the user press a-z?
-			else if(isalpha(ch))
-			{
-				userInput += tolower(ch);
-			}
-		}
-
-		// 2 - act on it
-
-
-		// 3 - draw the screen
-		system("cls");
-		cout << 15 - bob.getElapsedTime()/1000;
-		cout << '\n' << userInput << '\n';
-	}*/
-
 	play.start();
-
-	//system("pause");
 	return 0;
 }

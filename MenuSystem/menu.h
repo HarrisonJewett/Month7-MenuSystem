@@ -39,5 +39,7 @@ public:
 
 		choices.append(newOption);
 	}
+
+	unsigned int getCurrentSelection() { return currSelection; }
 };
 
