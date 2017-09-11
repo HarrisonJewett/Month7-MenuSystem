@@ -24,7 +24,7 @@ void doSomething::Update()
 	if (GetAsyncKeyState(VK_UP))
 	{
 		HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-		COORD position = { 0, (int)(CURSOR_ADD + curSelection) };
+		COORD position = { 0, (short)(CURSOR_ADD + curSelection) };
 		SetConsoleCursorPosition(output, position);
 		cout << ' ';
 		if (curSelection == 0)
@@ -35,7 +35,7 @@ void doSomething::Update()
 	if (GetAsyncKeyState(VK_DOWN))
 	{
 		HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-		COORD position = { 0, (int)(CURSOR_ADD + curSelection) };
+		COORD position = { 0, (short)(CURSOR_ADD + curSelection) };
 		SetConsoleCursorPosition(output, position);
 		cout << ' ';
 		if (curSelection == maxSelection + 1)
@@ -47,8 +47,22 @@ void doSomething::Update()
 	{
 		if (curSelection == maxSelection + 1)
 		{
-			run = false;
-			return;
+			system("cls");
+			if (menuStack.activeMenus.size() > 1)
+			{
+				menuStack.removeHead();
+				loadMenu(menuStack.current().subMenuPath);
+			}
+			else if (menuStack.activeMenus.size() == 1)
+			{
+				menuStack.removeHead();
+				loadMenu("main.mnu");
+			}
+			else
+			{
+				run = false;
+				return;
+			}
 		}
 		else if (curSelection < numPossibleMenus)
 		{
@@ -82,7 +96,7 @@ void doSomething::Render()
 {
 
 	HANDLE output = GetStdHandle(STD_OUTPUT_HANDLE);
-	COORD position = { 0, (int)(CURSOR_ADD + curSelection) };
+	COORD position = { 0, (short)(CURSOR_ADD + curSelection) };
 	SetConsoleCursorPosition(output, position);
 	cout << '>';
 	Sleep(120);
